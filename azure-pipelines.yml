@@ -20,10 +20,13 @@ steps:
    export SFDX_DOMAIN_RETRY=300
    export SFDX_DISABLE_APP_HUB=true
    export SFDX_LOG_LEVEL=DEBUG
+  displayName: 'Run variable script'
+
+  - script: |
    mkdir sfdx
    wget -qO- $URL | tar xJ -C sfdx --strip-components 1
    "./sfdx/install"
    export PATH=./sfdx/$(pwd):$PATH
    sfdx --version
    sfdx plugins --core
-  displayName: 'Run a multi-line script'
+  displayName: 'Run sfdx script'
