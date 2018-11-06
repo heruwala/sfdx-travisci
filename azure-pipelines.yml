@@ -22,7 +22,7 @@ steps:
    export SFDX_LOG_LEVEL=DEBUG
   displayName: 'Run variable script'
 
-  - script: |
+- script: |
    mkdir sfdx
    wget -qO- $URL | tar xJ -C sfdx --strip-components 1
    "./sfdx/install"
