@@ -29,4 +29,5 @@ steps:
    export PATH=./sfdx/$(pwd):$PATH
    sfdx --version
    sfdx plugins --core
+   sfdx force:auth:jwt:grant --clientid 3MVG9zlTNB8o8BA3Yt71uIGGnSR7afF7_7rQOQSto1mb0VQ5ov4lYLLqTxsltqyXSc4ig.ejwlUR25FIEze9m --username heruwala@resourceful-raccoon-fjl5g3.com --jwtkeyfile assets/server.key --setdefaultdevhubusername -a HubOrg
   displayName: 'Run sfdx script'
