@@ -6,24 +6,15 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
-before_install:
-- export SFDX_AUTOUPDATE_DISABLE=false
-- export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
-- export SFDX_DOMAIN_RETRY=300
-- export SFDX_DISABLE_APP_HUB=true
-- export SFDX_LOG_LEVEL=DEBUG
-- mkdir sfdx
-- wget -qO- $URL | tar xJ -C sfdx --strip-components 1
-- "./sfdx/install"
-- export PATH=./sfdx/$(pwd):$PATH
-- sfdx --version
-- sfdx plugins --core
-- sfdx force:auth:jwt:grant --clientid 3MVG9zlTNB8o8BA3Yt71uIGGnSR7afF7_7rQOQSto1mb0VQ5ov4lYLLqTxsltqyXSc4ig.ejwlUR25FIEze9m 
-  --username heruwala@resourceful-raccoon-fjl5g3.com --jwtkeyfile assets/server.key --setdefaultdevhubusername -a HubOrg  
-script:
-- sfdx force:org:create -v HubOrg -s -f config/project-scratch-def.json -a ciorg --wait
-  2
-- sfdx force:org:display -u ciorg
-- sfdx force:source:push -u ciorg
-- sfdx force:apex:test:run -u ciorg --wait 10
-- sfdx force:org:delete -u ciorg -p
+variables:
+- name: URL           # hardcoded value
+  value: https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
