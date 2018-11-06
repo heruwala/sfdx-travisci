@@ -34,4 +34,5 @@ steps:
 
 - script: |
    sfdx force:org:create -v HubOrg -s -f config/project-scratch-def.json -a ciorg
+   2
   displayName: 'Run deployment script'  
