@@ -15,7 +15,8 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-   openssl aes-256-cbc -K $encrypted_3ff541c4128f_key -iv $encrypted_3ff541c4128f_iv -in assets/server.key.enc -out assets/server.key -d
+   #TODO: currently the below encryption key is part of git-repo which needs to be avoided or use key vault to store and retreieve the cert
+   #openssl aes-256-cbc -K $encrypted_3ff541c4128f_key -iv $encrypted_3ff541c4128f_iv -in assets/server.key.enc -out assets/server.key -d
    export SFDX_AUTOUPDATE_DISABLE=false
    export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
    export SFDX_DOMAIN_RETRY=300
@@ -30,6 +31,7 @@ steps:
    export PATH=./sfdx/$(pwd):$PATH
    sfdx --version
    sfdx plugins --core
+   #TODO: Add below CONSUMERKEY AND USERNAME to environment variable in build pipeline
    sfdx force:auth:jwt:grant --clientid 3MVG9zlTNB8o8BA3Yt71uIGGnSR7afF7_7rQOQSto1mb0VQ5ov4lYLLqTxsltqyXSc4ig.ejwlUR25FIEze9m --username heruwala@resourceful-raccoon-fjl5g3.com --jwtkeyfile assets/server.key --setdefaultdevhubusername -a HubOrg
   displayName: 'Run sfdx script'
 
