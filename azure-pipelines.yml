@@ -31,7 +31,6 @@ steps:
    export PATH=./sfdx/$(pwd):$PATH
    sfdx --version
    sfdx plugins --core
-   #TODO: Add below CONSUMERKEY AND USERNAME to environment variable in build pipeline
    sfdx force:auth:jwt:grant --clientid $(CONSUMERKEY) --username $(USERNAME) --jwtkeyfile assets/server.key --setdefaultdevhubusername -a HubOrg
   displayName: 'Run sfdx script'
 
