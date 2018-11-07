@@ -22,7 +22,6 @@ steps:
    export SFDX_DOMAIN_RETRY=300
    export SFDX_DISABLE_APP_HUB=true
    export SFDX_LOG_LEVEL=DEBUG
-   echo $(USERNAME)
   displayName: 'Run variable script'
 
 - script: |
@@ -33,7 +32,7 @@ steps:
    sfdx --version
    sfdx plugins --core
    #TODO: Add below CONSUMERKEY AND USERNAME to environment variable in build pipeline
-   sfdx force:auth:jwt:grant --clientid 3MVG9zlTNB8o8BA3Yt71uIGGnSR7afF7_7rQOQSto1mb0VQ5ov4lYLLqTxsltqyXSc4ig.ejwlUR25FIEze9m --username heruwala@resourceful-raccoon-fjl5g3.com --jwtkeyfile assets/server.key --setdefaultdevhubusername -a HubOrg
+   sfdx force:auth:jwt:grant --clientid $(CONSUMERKEY) --username $(USERNAME) --jwtkeyfile assets/server.key --setdefaultdevhubusername -a HubOrg
   displayName: 'Run sfdx script'
 
 - script: |
