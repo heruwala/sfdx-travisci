@@ -17,19 +17,14 @@ steps:
   inputs:
     secureFile: server.key
   displayName: 'Download server.key from secure location'
-  
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
 - script: |
-   #TODO: currently the below encryption key is part of git-repo which needs to be avoided or use key vault to store and retreieve the cert
-   #openssl aes-256-cbc -K $encrypted_3ff541c4128f_key -iv $encrypted_3ff541c4128f_iv -in assets/server.key.enc -out assets/server.key -d
    export SFDX_AUTOUPDATE_DISABLE=false
    export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
    export SFDX_DOMAIN_RETRY=300
    export SFDX_DISABLE_APP_HUB=true
    export SFDX_LOG_LEVEL=DEBUG
-  displayName: 'Run variable script'
+  displayName: 'Export/set variables'
 
 - script: |
    mkdir sfdx
@@ -47,4 +42,4 @@ steps:
    sfdx force:source:push -u ciorg
    sfdx force:apex:test:run -u ciorg --wait 10
    sfdx force:org:delete -u ciorg -p
-  displayName: 'Run Scratch Org deployment script'  
+  displayName: 'Run Scratch Org deployment script, Run Tests and Delete'  
