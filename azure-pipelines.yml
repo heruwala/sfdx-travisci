@@ -38,7 +38,7 @@ steps:
    export PATH=./sfdx/$(pwd):$PATH
    sfdx --version
    sfdx plugins --core
-   sfdx force:auth:jwt:grant --clientid $(CONSUMERKEY) --username $(USERNAME) --jwtkeyfile $env:DOWNLOADSECUREFILE_SECUREFILEPATH --setdefaultdevhubusername -a HubOrg
+   sfdx force:auth:jwt:grant --clientid $(CONSUMERKEY) --username $(USERNAME) --jwtkeyfile $(Agent.TempDirectory)/server.key --setdefaultdevhubusername -a HubOrg
   displayName: 'Run sfdx script'
 
 - script: |
