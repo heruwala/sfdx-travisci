@@ -9,8 +9,15 @@ pool:
 variables:
 - name: URL           # hardcoded value
   value: https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-
+    
 steps:
+# Download Secure File
+# Download a secure file to a temporary location on the build or release agent
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: server.key
+  displayName: 'Download server.key from secure location'
+  
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
@@ -31,7 +38,7 @@ steps:
    export PATH=./sfdx/$(pwd):$PATH
    sfdx --version
    sfdx plugins --core
-   sfdx force:auth:jwt:grant --clientid $(CONSUMERKEY) --username $(USERNAME) --jwtkeyfile assets/server.key --setdefaultdevhubusername -a HubOrg
+   sfdx force:auth:jwt:grant --clientid $(CONSUMERKEY) --username $(USERNAME) --jwtkeyfile $env:DOWNLOADSECUREFILE_SECUREFILEPATH --setdefaultdevhubusername -a HubOrg
   displayName: 'Run sfdx script'
 
 - script: |
